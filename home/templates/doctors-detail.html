@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%block body%}
+{%load static%}
+
+<div class="col-md-4">
+    <div class="contact_box">
+
+    </div>
+ </div>
+ <div class="container">
+    <h1 class="health_taital"><strong>Doctors Deatils</strong></h1>
+ <section class="py-5">
+   <div class="container px-4 px-lg-5 mt-5" >
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"style="gap:50px;">
+<!-- Doctor Details -->
+
+{%for d in ho%}
+    <div class="card" style="width: 18rem;">
+      {%if d.photo%}
+      <img src="{{d.photo.url}}" class="card-img-top" alt="...">
+      {%else%}
+      <img src="..." class="card-img-top" alt="...">
+      {%endif%}
+      <div class="card-body">
+        <h5 class="card-title">Doctor Name : <strong>{{d.doctor_Name_add}}</strong></h5>
+        <h5 class="card-text">Department : <strong>{{d.department}}</strong></h5>
+        <h5 class="card-text">Qlification  : <strong>{{d.qlification}}</strong></h5>
+      </div>
+    </div>
+  {%endfor%}
+
+ <!-- Doctor Details end  -->
+  
+  <div class="health_section layout_padding">
+   <div class="container">
+      <h1 class="health_taital">Doctors Certified</h1>
+      <p class="health_text">In this article are the online certificate courses for doctors, maybe you are a fresh graduate of medicine or a newly certified doctor seeking to find some online certificate courses available to young doctors like you to help you build your careers, if so, then this article is for you.
+       The period of study for these courses varies, the level of experience/expertise required to enroll in these courses varies. Some of these online certificate courses for doctors require enrollment fees, while others require only those who want to procure certificates to pay for them.
+       Online certificate courses help doctors to improve in their careers, doctors who want to specialize in some areas of medicine but have no time to do that with the traditional school system can also use online certificate courses as an alternative for better professional development. Read about the advantages and disadvantages of online education before continuing with this article.</p>
+      </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<script>
+  function printPage() {
+      window.print();
+  }
+</script>
+{%endblock%}
+
+ 

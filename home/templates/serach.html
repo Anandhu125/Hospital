@@ -1,0 +1,47 @@
+{%extends 'base.html'%} {%block body%} {%load static%} {%for i in doctor_post%}
+
+<div class="health_section layout_padding">
+  <div class="container">
+    <h1 class="health_taital">Doctor {{i.doctor_Name_add}}</h1>
+    <p class="health_text">
+      Becoming a Doctor is not only a matter of prestige and draws a lot of
+      respect, but along with it comes the big responsibility of saving people’s
+      lives as well as ensuring they live healthy ones. Keeping in mind the
+      various parts and their complexities, there are different types of doctors
+      who specialize in different human body anatomy and help diagnose the cause
+      of illness or discomfort.
+    </p>
+  </div>
+</div>
+
+<!-- Sreaching Doctor Details -->
+<div class="container">
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <div class="card" style="width: 18rem">
+        {%if i.photo%}
+        <img src="{{i.photo.url}}" class="card-img-top" alt="..." />
+        {%else%}
+        <img src="..." class="card-img-top" alt="..." />
+        {%endif%}
+        <div class="card-body">
+          <h5 class="card-title">
+            Doctor Name : <strong>{{i.doctor_Name_add}}</strong>
+          </h5>
+          <h5 class="card-text">
+            Department : : <strong>{{i.department}}</strong>
+          </h5>
+          <h5 class="card-text">
+            Qlification : <strong>{{i.qlification}}</strong>
+          </h5>
+        </div>
+      </div>
+    </div>
+  <!-- Sreaching Doctor Details end -->
+
+    <div class="col-4"></div>
+  </div>
+</div>
+
+{%endfor%} {%endblock%}

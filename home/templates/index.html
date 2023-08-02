@@ -1,0 +1,185 @@
+{%extends 'base.html'%}
+{%block body%}
+{%load static%}
+
+<script>function printOut(divId) {
+   var printOutContent = document.getElementById(divId).innerHTML;
+   var originalContent = document.body.innerHTML;
+   document.body.innerHTML = printOutContent;
+   window.print();
+   document.body.innerHTML = originalContent;
+ }</script>
+
+ <style>
+
+   .height{
+       
+       height:50vh;
+   }
+   
+   .card{
+       
+       width:100%;
+       height:1100px;
+       margin-left: 17px;
+   }
+   
+   .image{
+       position:absolute;
+       right:12px;
+       top:10px;
+   }
+   
+   .main-heading{
+       
+       font-size:40px;
+       color:red !important;
+   }
+   
+   
+   .ratings i{
+       
+       color:orange;
+       
+   }
+   
+   .user-ratings h6{
+       margin-top:2px;
+   }
+   
+   .colors{
+       display:flex;
+       margin-top:2px;
+   }
+   
+   .colors span{
+       width:15px;
+       height:15px;
+       border-radius:50%;
+       cursor:pointer;
+       display:flex;
+       margin-right:6px;
+   }
+   
+   .colors span:nth-child(1) {
+       
+       background-color:red;
+       
+   }
+   
+   .colors span:nth-child(2) {
+       
+       background-color:blue;
+       
+   }
+   
+   .colors span:nth-child(3) {
+       
+       background-color:yellow;
+       
+   }
+   
+   .colors span:nth-child(4) {
+       
+       background-color:purple;
+       
+   }
+
+   </style>
+
+
+   <!-- Appointment section start -->
+   <div class="contact_section layout_padding">
+      <div class="container">
+         <h1 class="contact_taital">What we do</h1>
+         <div class="news_section_2">
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="icon_main">
+                     <div class="icon_7"><img src="{%static 'images/icon-7.png'%}"></div>
+                     <h4 class="diabetes_text">Diabetes and obesity Counselling </h4>
+                  </div>
+                  <div class="icon_main">
+                     <div class="icon_7"><img src="{%static 'images/icon-5.png'%}"></div>
+                     <h4 class="diabetes_text">Obstetrics and Gynsecology</h4>
+                  </div>
+                  <div class="icon_main">
+                     <div class="icon_7"><img src="{%static 'images/icon-6.png'%}"></div>
+                     <h4 class="diabetes_text">Surgical and medical Oncology</h4>
+                  </div>
+               </div>
+               <div class="col-md-5" >
+                  <div class="contact_box">
+                     <h1 class="book_text">Book Appoinment</h1>
+                     <form action="" method="post">
+                        {%csrf_token%}
+                        {{form.as_p}}
+                        <div class="send_bt"><button type="submit" class="btn btn-info">submit</button></div>
+                     </form>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Appointment section end -->
+
+   <!-- health section start -->
+   <div class="health_section layout_padding">
+      <div class="container">
+         <h1 class="health_taital">Best Of Health care for you</h1>
+         <p class="health_text">Daily care notes are formal records, detailing the care delivered to an individual client. Recording daily care notes can support Professional Carers in capturing a more complete, personalised record of the needs, challenges and activities of the individuals in their care. Care notes are an essential part of the documentation process, and the information can be used to record changes, or review and update care plans.
+
+            </p>
+         </div>
+   </div>
+   
+<!-- Appointment Details -->
+<div class="container">
+   <h1 class="health_taital"><strong>Appointment Deatils</strong></h1>
+<section class="py-5">
+   <div class="container px-4 px-lg-5 mt-5" >
+       <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"style="gap:50px;">
+
+         {%for p in patient%}
+         <div class="card" style="width: 18rem;">
+           
+           <div class="card-body">
+              <div id="printIt">
+                 <div class="logo" ><img src="../static/images/logo.png"></div>
+                 <h1><strong style="font-family: 'Times New Roman', Times, serif;">NURGO HEALTH CARE</strong></h1>
+                 <img src="../static/images/th (20).jpg" alt="" >
+                 <p >GIST : 32AAATD3017C1ZMA, nurgo health care, P.B No. 75,<br> phone no.0469 2626000, email id:contact@nurgohelthcare,gamil.com vist:www.nurgohealthcare.com</p>
+                 <h1 style="font-family: 'Times New Roman', Times, serif;"><strong>Appoinment</strong></h1><hr>
+                 <h1>
+                  <h3 class="card-title">patient Name : <strong>{{p.Name}}</strong></h3>
+                  <h3 class="card-text">Mobile Number : <strong>{{p.phone}}</strong></h3>
+                  <h3 class="card-text">Address : <strong>{{p.address}}</strong></h3>
+                  <h3 class="card-text">consultant doctor : <strong>{{p.doctor_Name}}</strong></h3>
+                  <h3 class="card-text">Appoinment Date : <strong>{{p.Date}}</strong></h3>
+                  <h3 class="card-text">Appoinment Time : <strong>{{p.time_slot}}</strong></h3>
+                  <h3 class="card-text"></strong></h3>
+                  <h3 class="card-text">Appoinment Status : <strong>{{p.status}}</strong></h3>   
+                    
+                 </h1>
+               </div>
+               <button onClick="printOut('printIt')" class="btn btn-primary" style="margin-left: 60px;">
+                 Print
+               </button>
+                  <a href="{%url 'patient-edit' p.id%}" class="btn btn-danger">Edit</a>
+           </div>
+         </div>
+       {%endfor%}
+
+<!-- Appointment Details end -->
+
+       </div>
+           </div>
+           </div>
+           
+           </section>
+
+{%endblock%}
+
+
